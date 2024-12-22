@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Todo List</title>
+		<link rel="stylesheet" href="./styles/builds/app.css" />
+	</head>
+	<body class="bg-slate-300">
+		<main class="mx-64 py-16 h-screen">
+			<article class="bg-slate-100 h-full rounded-2xl p-2">
+				<h1 class="text-2xl font-bold text-center pb-2 border-b">Todo List</h1>
+
+				<div class="flex justify-center mt-4">
+					<input
+						class="px-2 py-1 w-72 mr-3 rounded-lg border-2 border-emerald-500 bg-transparent outline-none"
+						type="text"
+						name="add_todo"
+						id="add_todo"
+						placeholder="..."
+					/>
+					<!-- ID todo (berfungsi saat mengedit) -->
+					<input
+						class="hidden"
+						type="text"
+						name="todo_id"
+						id="todo_id"
+						readonly
+					/>
+					<button
+						class="py-2 px-3 bg-emerald-500 border-none text-white rounded-lg hover:bg-emerald-600"
+						id="submit_todo"
+					>
+						Add
+					</button>
+				</div>
+
+				<div class="flex flex-col items-center gap-3 mt-6">
+					<div class="flex items-center bg-white w-4/5 px-4 py-2 rounded-md">
+						<h4 class="w-[10%]" id="todo_number">1</h4>
+						<p class="w-1/2" id="todo_name">Buy Grocery</p>
+						<p class="w-[20%]" id="todo_status">Not Completed</p>
+
+						<div
+							class="w-[20%] flex items-center justify-center gap-4"
+							id="todo_action"
+						>
+							<button class="bg-yellow-500 text-white" id="todo_edit">
+								Edit
+							</button>
+							<button class="bg-red-600 text-white" id="todo_delete">
+								Delete
+							</button>
+						</div>
+					</div>
+					<div class="flex items-center bg-white w-4/5 px-4 py-2 rounded-md">
+						<h4 class="w-[10%]" id="todo_number">1</h4>
+						<p class="w-1/2" id="todo_name">Buy Grocery</p>
+						<p class="w-[20%]" id="todo_status">Not Completed</p>
+
+						<div
+							class="w-[20%] flex items-center justify-center gap-4"
+							id="todo_action"
+						>
+							<button class="bg-yellow-500 text-white" id="todo_edit">
+								Edit
+							</button>
+							<button class="bg-red-600 text-white" id="todo_delete">
+								Delete
+							</button>
+						</div>
+					</div>
+				</div>
+			</article>
+		</main>
+	</body>
+</html>
