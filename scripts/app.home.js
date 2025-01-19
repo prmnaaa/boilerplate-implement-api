@@ -1,7 +1,11 @@
-import { getTodos } from "./api.js";
+import { getTodos, createTodo, updateTodo, deleteTodo } from "./api.js";
 import { generateElement, Icon } from "./utils/index.js";
 
 const todoWrapper = document.getElementById("todo_wrapper");
+
+const todoInput = document.getElementById("add_todo");
+const todoId = document.getElementById("todo_id");
+const submitBtn = document.getElementById("submit_todo");
 
 document.addEventListener("DOMContentLoaded", () => {
 	// function untuk mengeksekusi pengambilan data
@@ -110,4 +114,55 @@ document.addEventListener("DOMContentLoaded", () => {
 			todoWrapper.appendChild(todoCard);
 		});
 	}
+
+	async function handleCreateTodo(payload) {
+		try {
+			const result = await createTodo({ payload });
+
+			if (result?.code === 200) {
+				alert("Data berhasil ditambahkan");
+			}
+
+			todoInput.value = "";
+			window.location.reload();
+
+		} catch (error) {
+			console.log("Error: ", error);
+		}
+	}
+
+	async function handleUpdateTodo(id, payload) {
+		try {
+			const result = await updateTodo({ id, payload });
+
+			if (result?.code === 200) {
+				alert("Data berhasil diupdate");
+			}
+			
+			todoInput.value = "";
+			todoId.value = "";
+			window.location.reload();
+		} catch (error) {
+			console.log("Error: ", error);
+		}
+	}
+
+	submitBtn.addEventListener("click", (e) => {
+		try {
+			e.preventDefault();
+
+			const payload = {
+				todo_name: todoInput.value,
+				todo_status: "Not Completed"
+			}
+
+			if (todoId.value === "") {
+				handleCreateTodo(payload);
+			} else {
+				handleUpdateTodo(todoId.value, payload);
+			}
+		} catch (error) {
+			console.log("Error: ", error);
+		}
+	});
 });
