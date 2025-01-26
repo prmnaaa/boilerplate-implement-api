@@ -17,6 +17,23 @@ export async function getTodos() {
 	}
 }
 
+// read data by id
+export async function getTodoById({ id = undefined }) {
+	try {
+		const response = await fetch(`${BASE_URL}/todos/${id}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+		const result = await response.json();
+		console.log("Get ID: ", result);
+
+		return result;
+	} catch (error) {
+		console.log("Error: ", error);
+	}
+}
 // create data
 export async function createTodo({ payload = undefined }) {
 	try {
@@ -58,9 +75,6 @@ export async function deleteTodo({id = undefined}) {
 	try {
 		const response = await fetch(`${BASE_URL}/todos/${id}`, {
 			method: "DELETE",
-			headers: {
-				"Content-Type": "application/json",
-			}
 		});
 		const result = await response.json();
 
